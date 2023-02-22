@@ -16,14 +16,12 @@
 
 <!-- SvelteKit Dynamic Header -->
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Home Page" />
+	<title></title>
+	<meta name="description" content="" />
 </svelte:head>
 
 <!-- Page Content -->
-<section>
-	<span>Home Page</span>
-</section>
+<div class="w-4 h-4 bg-red-400"></div>
 
 <!-- #################################################################################################### -->
 
