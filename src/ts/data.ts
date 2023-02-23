@@ -13,6 +13,18 @@ export interface Food {
   arr: HistoryRecord[],
 }
 
+// export const history: HistoryRecord[] = [
+//   {
+//     "Date": "16-01-23",
+//     "Time": "7:00",
+//     "Initial": 7.3,
+//     "Bolus": 8,
+//     "Restaurant": "McDonnald",
+//     "Food": "Toast menu 1 toast",
+//     "Result": 10.63
+//   },
+// ];
+
 export const history: HistoryRecord[] = [
   {
     "Date": "16-01-23",
