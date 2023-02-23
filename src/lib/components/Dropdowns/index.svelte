@@ -1,0 +1,38 @@
+<script lang="ts">
+    import { clickOutside } from "$utils/clickOutside";
+
+    export let isDropdownOpen = false;
+    export let doNotCloseOnDropownClick = false;
+    export let doNotCloseOnClickOutside = false;
+    export let dropdownTakesPlace = false;
+
+    let buttonHeight = 0;
+    let buttonWidth = 0;
+</script>
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div 
+    class='relative w-full'
+    bind:offsetHeight={buttonHeight}
+    bind:offsetWidth={buttonWidth}
+    use:clickOutside 
+    on:click_outside={() => {if (!doNotCloseOnClickOutside) isDropdownOpen = false}}
+    on:click={() => isDropdownOpen = !isDropdownOpen}
+>
+    <div>
+        <slot name='button' />
+    </div>
+
+    {#if isDropdownOpen}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div
+            class='{dropdownTakesPlace ? 'relative' : 'absolute left-0'} overflow-hidden z-10'
+            style:top='{dropdownTakesPlace ? '0' : buttonHeight}px'
+            style:width='{buttonWidth}px'
+            style:min-width='{buttonWidth}px'
+            on:click|stopPropagation={() => {if (!doNotCloseOnDropownClick) isDropdownOpen = false}}
+        >
+            <slot name='dropdown'/>
+        </div>
+    {/if}
+</div>
