@@ -1,10 +1,13 @@
-import type { Restaurant } from "./interfaces";
+import type { MealRecord, MealType, Restaurant } from "./interfaces";
 import { writable, get } from "svelte/store"
+import _ from "lodash-es"
 
 const STORAGE_KEY = "data"
 
 interface StorageJson {
   restaurants: Restaurant[],
+  mealTypes: MealType[],
+  records: MealRecord[]
 }
 
 export class Storage {
@@ -16,7 +19,7 @@ export class Storage {
     console.log({loadedData})
 
     if (!loadedData) {
-      this.data = {restaurants: []}
+      this.data = {restaurants: [], mealTypes: [], records: []}
       this.save();
     } else {
       this.data = JSON.parse(loadedData);
@@ -28,7 +31,25 @@ export class Storage {
   }
 
   appendRestaurant(data: Restaurant) {
-    this.data.restaurants.push(data)
+    this.data.restaurants.push(data);
+    this.save();
+  }
+
+  appendMealType(data: MealType) {
+    this.data.mealTypes.push(data);
+    this.save();
+  }
+
+  appendMealRecord(data: MealRecord) {
+    this.data.records.push(data)
+    this.save();
+  }
+
+  updateMealRecord(id: string, data: MealRecord) {
+    const recordIndex = _.findIndex(this.data.records, (i: MealRecord) => i.id === id)
+
+    this.data.records[recordIndex] = data;
+
     this.save();
   }
 }

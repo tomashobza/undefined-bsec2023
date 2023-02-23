@@ -20,8 +20,11 @@
 		"vite": "^4.1.2"
 	},
 	"dependencies": {
+		"@types/lodash-es": "^4.17.6",
 		"chart.js": "^4.2.1",
 		"firebase": "^9.17.1",
-		"linear-solve": "^1.2.1"
+		"linear-solve": "^1.2.1",
+		"lodash": "^4.17.21",
+		"lodash-es": "^4.17.21"
 	}
 }

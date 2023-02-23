@@ -3,10 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/kit': 1.7.2
+  '@types/lodash-es': ^4.17.6
   autoprefixer: ^10.4.13
   chart.js: ^4.2.1
   firebase: ^9.17.1
   linear-solve: ^1.2.1
+  lodash: ^4.17.21
+  lodash-es: ^4.17.21
   postcss: ^8.4.21
   svelte: ^3.55.1
   svelte-check: ^3.0.3
@@ -16,9 +19,12 @@ specifiers:
   vite: ^4.1.2
 
 dependencies:
+  '@types/lodash-es': 4.17.6
   chart.js: 4.2.1
   firebase: 9.17.1
   linear-solve: 1.2.1
+  lodash: 4.17.21
+  lodash-es: 4.17.21
 
 devDependencies:
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.7.2
@@ -861,6 +867,16 @@ packages:
     resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
     dev: true
 
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: false
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: false
+
   /@types/long/4.0.2:
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
     dev: false
@@ -1362,8 +1378,16 @@ packages:
     resolution: {integrity: sha512-YysEUwkRRtxvjJto9kArBJdH/NCnakI8YOrSDD8yK1EV3+t8UjNzqdCQSU+FaNtYLTCBdlI7fwV6Fbn1EEyLew==}
     dev: false
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
+    dev: false
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: false
 
   /long/4.0.0:
