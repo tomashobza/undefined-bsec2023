@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { history } from "$ts/data";
+  // import { history } from "$ts/data";
 </script>
 
 <svelte:head>
