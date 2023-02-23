@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { saveRestaurant } from "$ts/functions";
+    import { getRestaurants, saveRestaurant } from "$ts/functions";
     import { getStorage } from "$ts/storage";
     import { onMount } from "svelte";
 
@@ -8,8 +8,12 @@
 
     console.log({storage})
 
-    const rest = saveRestaurant('poe poe');
+    // const rest = saveRestaurant('poe poe');
 
-    console.log(rest)
+    // console.log(rest)
+
+    const rest = getRestaurants();
+
+    console.log({rest})
   })
 </script>

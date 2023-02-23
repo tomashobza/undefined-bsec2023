@@ -19,3 +19,7 @@ export function saveRestaurant(name: string) {
 
   return data;
 }
+
+export function getRestaurants(): Restaurant[] {
+  return getStorage().data.restaurants;
+}
