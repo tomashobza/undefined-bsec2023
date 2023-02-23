@@ -21,6 +21,7 @@
 	},
 	"dependencies": {
 		"chart.js": "^4.2.1",
-		"firebase": "^9.17.1"
+		"firebase": "^9.17.1",
+		"linear-solve": "^1.2.1"
 	}
 }

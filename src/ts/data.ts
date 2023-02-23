@@ -1,4 +1,4 @@
-interface HistoryRecord {
+export interface HistoryRecord {
   Date: string;
   Time: string;
   Initial: number;
@@ -7,6 +7,10 @@ interface HistoryRecord {
   Food: string;
   Result: number;
   JVB?: number;
+}
+
+export interface Food {
+  arr: HistoryRecord[],
 }
 
 export const history: HistoryRecord[] = [

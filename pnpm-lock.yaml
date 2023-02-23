@@ -6,6 +6,7 @@ specifiers:
   autoprefixer: ^10.4.13
   chart.js: ^4.2.1
   firebase: ^9.17.1
+  linear-solve: ^1.2.1
   postcss: ^8.4.21
   svelte: ^3.55.1
   svelte-check: ^3.0.3
@@ -17,6 +18,7 @@ specifiers:
 dependencies:
   chart.js: 4.2.1
   firebase: 9.17.1
+  linear-solve: 1.2.1
 
 devDependencies:
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.7.2
@@ -1355,6 +1357,10 @@ packages:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
     dev: true
+
+  /linear-solve/1.2.1:
+    resolution: {integrity: sha512-YysEUwkRRtxvjJto9kArBJdH/NCnakI8YOrSDD8yK1EV3+t8UjNzqdCQSU+FaNtYLTCBdlI7fwV6Fbn1EEyLew==}
+    dev: false
 
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
