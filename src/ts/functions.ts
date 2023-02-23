@@ -36,7 +36,17 @@ export function saveMealType(restaurantId: string, name: string): MealType {
   return data;
 }
 
-export function saveMealRecord(mealTypeId: string, init: number, dose: number) {
+export function getMealTypes(search?: string): MealType[] {
+  const mealTypes = getStorage().data.mealTypes;
+
+  if (!search) {
+    return mealTypes;
+  }
+
+  return mealTypes.filter((i: MealType) => i.name === search);
+}
+
+export function saveMealRecord(mealTypeId: string, init: number, dose: number): MealRecord {
   const data: MealRecord = {
     id: getRandomId(),
     dose,
@@ -45,9 +55,15 @@ export function saveMealRecord(mealTypeId: string, init: number, dose: number) {
   }
 
   getStorage().appendMealRecord(data);
+
+  return data;
 }
 
-export function updateMealRecord(recordId: string, result: number) {
+export function getMealRecords(): MealRecord[] {
+  return getStorage().data.records;
+}
+
+export function updateMealRecord(recordId: string, result: number): MealRecord {
   const record = getStorage().data.records.find(i => i.id === recordId);
 
   if (!record) {
@@ -55,4 +71,8 @@ export function updateMealRecord(recordId: string, result: number) {
   }
 
   record.result = result;
+
+  getStorage().updateMealRecord(recordId, record);
+
+  return record;
 }
