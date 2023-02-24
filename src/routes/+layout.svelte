@@ -8,12 +8,31 @@
 	
 </script>
 
-<!-- #################################################################################################### -->
+<svelte:head>
+	<title></title>
+	<meta name="description" content="" />
+</svelte:head>
 
-<!-- App Content -->
-<slot />
+<div class="sm:p-4 transition-all bg-slate-100 w-full h-full flex flex-col items-center justify-center text-sm">
+	<div class="mobile">
+		<div class="w-full bg-[#35B9F1]">
+			lol
+		</div>
 
-<!-- #################################################################################################### -->
+		<div class="p-4 h-full overflow-y-auto flex-grow">
+			<slot />
+		</div>
 
-<style>
+	</div>
+</div>
+
+<style lang="postcss">	
+	.mobile {
+		@apply bg-white;
+		@apply w-full sm:max-w-[28rem] h-full;
+		@apply rounded-xl;
+		@apply overflow-hidden;
+		@apply shadow-lg;
+		@apply transition-all;
+	}
 </style>

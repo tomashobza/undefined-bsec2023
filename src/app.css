@@ -12,6 +12,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'Inter', sans-serif;
 }
 
 *, *:after, *:before {
@@ -24,4 +25,8 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+textarea:focus, input:focus{
+	outline: none;
 }

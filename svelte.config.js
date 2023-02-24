@@ -7,6 +7,8 @@ const config = {
 	kit: {
 		alias: {
       '$ts': 'src/ts/',
+			'$utils': 'src/utils/',
+			'$components': 'src/lib/components/'
     },
 		adapter: adapter()
 	},

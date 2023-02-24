@@ -1,13 +1,12 @@
 <script lang="ts">
-  // import { history } from "$ts/data";
+	import JidloInput from '$components/JidloInput.svelte';
+  import RestauraceInput from '$components/RestauraceInput.svelte';
+
+	let chosenRestaurace: null | string;
+	let chosenJidlo: null | string;
+
 </script>
 
-<svelte:head>
-	<title></title>
-	<meta name="description" content="" />
-</svelte:head>
+		<RestauraceInput bind:chosenRestaurace={chosenRestaurace} />
 
-<div></div>
-
-<style lang="postcss">	
-</style>
+		<JidloInput chosenRestaurace={chosenRestaurace} {chosenJidlo} />

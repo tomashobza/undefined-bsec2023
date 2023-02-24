@@ -1,5 +1,6 @@
 <script lang="ts">
     import { clickOutside } from "$utils/clickOutside";
+  import { slide } from "svelte/transition";
 
     export let isDropdownOpen = false;
     export let doNotCloseOnDropownClick = false;
@@ -30,6 +31,7 @@
             style:top='{dropdownTakesPlace ? '0' : buttonHeight}px'
             style:width='{buttonWidth}px'
             style:min-width='{buttonWidth}px'
+            transition:slide
             on:click|stopPropagation={() => {if (!doNotCloseOnDropownClick) isDropdownOpen = false}}
         >
             <slot name='dropdown'/>
