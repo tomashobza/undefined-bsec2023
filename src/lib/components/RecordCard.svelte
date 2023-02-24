@@ -12,8 +12,11 @@
 
     $: datetime = dayjs(record.dateTime * 1000)
     $: timeToComplete = datetime.add(2, "hours").unix() - dayjs().unix()
-    $: stringToComplete = dayjs.duration(timeToComplete, "seconds").format("DD[d] HH[h] MM[m]");
+    $: duration_ = dayjs.duration(timeToComplete, "seconds")
+    $: stringToComplete = `${duration_.hours()}h ${duration_.minutes()}m`
 
+    $: console.log(datetime)
+    $: console.log(timeToComplete)
     $: console.log(stringToComplete)
 
     let mealType: MealType;
@@ -41,12 +44,16 @@
   <div class="flex">
     <div class="flex-grow">Glykemie 2 hod. po jídle:</div>
     <div>
-      {#if timeToComplete < 0}
+      {#if timeToComplete > 0}
         <span class="text-red-500 font-semibold">
           za {stringToComplete}
         </span>
+      {:else if !record.result}
+      <span class="text-red-500 font-semibold">
+        Nezazn.
+      </span>
       {:else}
-        {record.result || 'Nezazn.'} <span class="text-gray-500">mmol/L</span>
+        {record.result} <span class="text-gray-500">mmol/L</span>
       {/if}
     </div>
   </div>
