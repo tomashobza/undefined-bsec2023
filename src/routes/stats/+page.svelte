@@ -65,7 +65,7 @@
 </script>
 
 <div class="pb-3">
-  <button class="w-full flex flex-row items-center mb-2" on:click={toggleGraph}>
+  <button class="w-full flex flex-row items-center my-4" on:click={toggleGraph}>
     <div class="flex-grow text-left">Ukázat graf posledních 30 dní</div>
     <div class="w-5 transition-all duration-500" class:rotate-180={showGraph}><Chevron /></div>
   </button>

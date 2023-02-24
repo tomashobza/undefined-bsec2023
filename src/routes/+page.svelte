@@ -19,10 +19,12 @@
 	let maloDat = false;
 	let saved = false;
 	let glykogenInput;
+	let davkaInput;
 
 	let doporucenaDavka: null | number = null;
 
 	const save = () => {
+		console.log('4')
 		if (chosenRestaurace && chosenJidlo && init && doporucenaDavka && !saved) {
 			saveMealRecord(chosenJidlo.id, init, doporucenaDavka, dayjs());
 			Toastify({
@@ -46,6 +48,7 @@
 	let records;
 
 	const openDrawer = () => {
+		console.log('3')
 		if (chosenRestaurace && chosenJidlo) {
 			records = getMealRecordsOfType(chosenJidlo.id);
 
@@ -72,11 +75,13 @@
 	}
 
 	$: if (!chosenRestaurace || !chosenJidlo || !init) {
+		console.log('2')
 		doporucenaDavka = null;
 		maloDat = false;
 	}
 
-	$: if (chosenRestaurace && chosenJidlo && init) {
+	$: if (chosenRestaurace && chosenJidlo && init && !doporucenaDavka) {
+		console.log('1')
 		saved = false;
 		const { a, b, avgJVB } = calculateBolus(chosenJidlo.id);
 		if (a == b && b == avgJVB && avgJVB == 0) {
@@ -100,7 +105,7 @@
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
 		<div class="mb-1 font-bold">Současná hladina glukózy</div>
-		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3" on:click={glykogenInput.focus()}>
+		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3" on:click={() => glykogenInput.focus()}>
 			<input type="number" min='0' class="flex-grow" bind:value={init} bind:this={glykogenInput}>
 			<div class="text-gray-400">mmol/L</div>
 		</div>
@@ -114,7 +119,11 @@
 		</div>
 	{/if}
 	<div class="flex-grow flex flex-col items-center justify-center">
-		<div class="text-[6rem] leading-[6rem] font-semibold">{doporucenaDavka ?? '--'}</div>
+		{#if doporucenaDavka !== null}
+			<input type="number" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
+		{:else}
+			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" disabled value={'--'}>
+		{/if}
 		<div class="text-xl text-gray-400 font-thin">jednotek</div>
 	</div>
 	<div class="flex flex-row w-full justify-evenly mb-6 gap-2">
