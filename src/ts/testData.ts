@@ -15,7 +15,7 @@ export function laodTestData() {
   const restaurantNames = testData.map(r => r.Restaurant)
   const restaurantNamesDeduped = _.uniq(restaurantNames)
 
-  restaurantNamesDeduped.forEach(i => saveRestaurant(i))
+  restaurantNamesDeduped.forEach(i => saveRestaurant(i, 0, 0))
 
   const mealTypes = _.uniqBy(testData, (r) => r.Food)
 

@@ -6,10 +6,12 @@ function getRandomId(): string {
   return (Math.random() * 100000000000000000).toString()
 }
 
-export function saveRestaurant(name: string): Restaurant {
+export function saveRestaurant(name: string, geoLat: number, geoLong: number): Restaurant {
   const data: Restaurant = {
     id: getRandomId(),
     name,
+    geoLat,
+    geoLong
   }
 
   getStorage().appendRestaurant(data);

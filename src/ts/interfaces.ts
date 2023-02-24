@@ -1,6 +1,8 @@
 export interface Restaurant {
   id: string;
   name: string;
+  geoLat: number;
+  geoLong: number;
 }
 
 export interface MealType {
