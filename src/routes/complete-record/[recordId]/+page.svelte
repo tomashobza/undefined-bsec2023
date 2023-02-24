@@ -16,7 +16,7 @@
     function save() {
       updateMealRecord(recordId, parseInt(resultValue))
 
-      goto('/')
+      goto('/stats')
     }
 
   onMount(() => {
