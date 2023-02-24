@@ -47,6 +47,10 @@ export function getMealTypes(search?: string): MealType[] {
   return mealTypes.filter((i: MealType) => i.name === search);
 }
 
+export function getMealTypeById(id: string): MealType | null{
+  return getStorage().data.mealTypes.find(r => r.id === id) || null;
+}
+
 export function saveMealRecord(mealTypeId: string, init: number, dose: number, datetime: dayjs.Dayjs): MealRecord {
   const data: MealRecord = {
     id: getRandomId(),
@@ -63,6 +67,10 @@ export function saveMealRecord(mealTypeId: string, init: number, dose: number, d
 
 export function getMealRecords(): MealRecord[] {
   return getStorage().data.records;
+}
+
+export function getMealRecordById(id: string): MealRecord | null{
+  return getStorage().data.records.find(r => r.id === id) || null;
 }
 
 export function updateMealRecord(recordId: string, result: number): MealRecord {
@@ -133,4 +141,37 @@ export function calculateBolus(mealTypeId: string): {a: number, b: number, avgJV
   const a = (sumY - b*sumX)/x.length;
 
   return {a, b, avgJVB};
+}
+
+export function planNotificationForMeal(recordId: string, secondsFromNow: number = 2 * 60 * 60) {
+  const record = getMealRecordById(recordId);
+
+  if (!record) {
+    console.error('Failed to get record.')
+    return
+  }
+
+  const mealType = getMealTypeById(record.mealTypeId)
+
+  if (!mealType) {
+    console.error('Failed to get meal type.')
+    return
+  }
+
+  console.log(record)
+
+  Notification.requestPermission((result) => {
+    if (result === "granted") {
+      navigator.serviceWorker.ready.then((registration) => {
+        setTimeout(() => {
+          registration.showNotification("Dokončete záznam o jídle", {
+            body: `Dokončete prosím záznam o jídle '${mealType.name}'`,
+            icon: "../images/touch/chrome-touch-icon-192x192.png",
+            vibrate: [200, 100, 200, 100, 200, 100, 200],
+            tag: "complete-record",
+          });
+        }, secondsFromNow * 1000)
+      });
+    }
+  });
 }
