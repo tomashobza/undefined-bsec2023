@@ -9,6 +9,7 @@
   import { fly, scale, slide } from 'svelte/transition';
 	import dayjs from 'dayjs';
 	import Toastify from 'toastify-js'
+    import { goto } from '$app/navigation';
 
 	let chosenRestaurace: null | Restaurant;
 	let chosenJidlo: null | MealType;
@@ -36,6 +37,8 @@
 			}).showToast();
 
 			saved = true;
+
+			goto('/stats')
 		}
 	}
 
