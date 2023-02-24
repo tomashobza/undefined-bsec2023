@@ -2,35 +2,50 @@
   import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
+  import { getMealTypes } from '$ts/functions';
+  import type { MealType, Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
+  import { onMount } from 'svelte';
+
+  import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 
-  export let chosenRestaurace: null | string;
+  export let chosenRestaurace: null | Restaurant;
+
+  let mounted = false;
+  onMount(() => mounted = true);
 
   // JIDLA
 	let jidloOpen = false;
 	let jidloInput: HTMLInputElement;
 	let jidloSearch: string = "";
 
-	let jidla: string[] = [];
-	$: if (chosenRestaurace) {
-    jidla = Object.keys(restaurants[chosenRestaurace]);
+	let jidla: MealType[] = [];
+  let filteredJidla = jidla;
+	$: if (chosenRestaurace && mounted && !jidloSearch) {
+    jidla = getMealTypes();
+    filteredJidla = jidla;
     chosenJidlo = null;
     jidloSearch = "";
   };
-	let filteredJidla = jidla;
-	export let chosenJidlo: null | string = null;
-	const chooseJidlo = (name: string) => {
-		chosenJidlo = name;
+	let chosenJidlo: null | MealType = null;
+	const chooseJidlo = (meal: MealType) => {
+		chosenJidlo = meal;
+    dispatch('choose', chosenJidlo);
 	}
 
 	const addJidlo = () => {
-		jidla.push(jidloSearch);
-		filteredJidla = jidla.filter(r => r.includes(jidloSearch));
-		chooseJidlo(jidloSearch);
+		jidla.push({name: jidloSearch} as MealType);
+		filteredJidla = getMealTypes(jidloSearch);
+		chooseJidlo({name: jidloSearch} as MealType);
 	}
 
-	$: filteredJidla = jidla.filter(r => r.includes(jidloSearch));
+	$: if (mounted && jidloSearch) {
+    filteredJidla = jidla.filter(v => v.name.includes(jidloSearch));
+    console.log(jidloSearch);
+  };
 
 	$: if (jidloOpen) {
 		jidloInput?.focus();
@@ -46,7 +61,7 @@
         <input type="text" placeholder="Název..." bind:value={jidloSearch} bind:this={jidloInput} class="flex-grow">
       {:else}
         {#if chosenJidlo}
-          <div class="flex-grow">{chosenJidlo}</div>
+          <div class="flex-grow">{chosenJidlo.name}</div>
         {:else}
           <div class="flex-grow text-gray-300">Vyberte místo</div>
         {/if}
@@ -57,7 +72,7 @@
       {#if filteredJidla.length > 0}
         {#each filteredJidla as jidlo}
           <div class="restaurace" on:click={() => chooseJidlo(jidlo)}>
-            {jidlo}
+            {jidlo.name}
           </div>
         {/each}
       {:else}

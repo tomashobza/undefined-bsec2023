@@ -1,13 +1,13 @@
 <script lang="ts">
 	import JidloInput from '$components/JidloInput.svelte';
   import RestauraceInput from '$components/RestauraceInput.svelte';
-  import type { Restaurant } from '$ts/interfaces';
+  import type { MealType, Restaurant } from '$ts/interfaces';
 
-	let chosenRestaurace: null | Restaurant = null;
-	let chosenJidlo: null | string;
+	let chosenRestaurace: null | Restaurant;
+	let chosenJidlo: null | MealType;
 
+	$: console.log(chosenRestaurace, chosenJidlo);
 </script>
 
-		<RestauraceInput bind:chosenRestaurace={chosenRestaurace} />
-
-		<JidloInput chosenRestaurace={"chosenRestaurace"} {chosenJidlo} />
+		<RestauraceInput on:choose={(e) => chosenRestaurace = e.detail} />
+		<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
