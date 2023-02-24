@@ -1,6 +1,7 @@
 import type { MealRecord, MealType, Restaurant } from "./interfaces";
 import { getStorage } from "./storage";
 import type dayjs from "dayjs"
+import Toastify from 'toastify-js'
 
 function getRandomId(): string {
   return (Math.random() * 100000000000000000).toString()
@@ -205,4 +206,17 @@ export function planNotificationForMeal(recordId: string, secondsFromNow: number
       });
     }
   });
+}
+
+export function showError(msg: string) {
+  Toastify({
+    text: msg,
+    duration: 3000,
+    close: true,
+    gravity: "top", 
+    position: "right",
+    style: {
+      background: "rgb(255, 0, 0)",
+    },
+  }).showToast();
 }

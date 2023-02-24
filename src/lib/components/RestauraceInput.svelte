@@ -2,7 +2,7 @@
    import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
-  import { getRestaurants, saveRestaurant } from '$ts/functions';
+  import { getRestaurants, saveRestaurant, showError } from '$ts/functions';
   import type { Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
   import { onMount } from 'svelte';
@@ -23,10 +23,17 @@
     dispatch('choose', chosenRestaurace);
   }
   const addRestaurant = () => {
-    navigator.geolocation.getCurrentPosition((v) => {
-      const new_rest = saveRestaurant(mistoSearch, v.coords.latitude, v.coords.longitude);
+    function completeSaveRestaurant(lat: number, long: number) {
+      const new_rest = saveRestaurant(mistoSearch, lat, long);
       filteredRestaurace = restaurace.filter(r => r.name.includes(mistoSearch));
       chooseRestaurace(new_rest);
+    }
+
+    navigator.geolocation.getCurrentPosition((v) => {
+      completeSaveRestaurant(v.coords.latitude, v.coords.longitude)
+    }, () => {
+      showError("Nepodařilo se načíst lokaci.")
+      completeSaveRestaurant(0, 0)
     })
   }
   let mistoInput: HTMLInputElement;
