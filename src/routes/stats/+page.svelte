@@ -4,6 +4,7 @@
     import type { MealRecord } from "$ts/interfaces";
     import { onMount } from "svelte"
     import dayjs from "dayjs"
+    import Chart from 'chart.js/auto';
 
     let records: MealRecord[] = [];
     let groups: {dateString: string, records: MealRecord[]}[] = [];
@@ -29,6 +30,7 @@
 </script>
 
 <div class="pb-3">
+  <div>graf</div>
   {#each groups as group}
     <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
   
