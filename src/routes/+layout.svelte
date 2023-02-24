@@ -16,7 +16,8 @@
 <div class="sm:p-4 transition-all bg-slate-100 w-full h-full flex flex-col items-center justify-center text-sm">
 	<div class="mobile">
 		<div class="w-full bg-[#35B9F1]">
-			lol
+			lol 
+			<!-- TODO: tady tome -->
 		</div>
 
 		<div class="p-4 h-full overflow-y-auto flex-grow">

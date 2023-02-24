@@ -2,31 +2,38 @@
    import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
+  import { getRestaurants } from '$ts/functions';
+  import type { Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
+  import { onMount } from 'svelte';
 
 
   // RESTAURACE
 	let mistoOpen = false;
 
-let restaurace = Object.keys(restaurants);
-let filteredRestaurace = restaurace;
-export let chosenRestaurace: null | string = null;
-const chooseRestaurace = (name: string) => {
-  chosenRestaurace = name;
-}
-const addRestaurant = () => {
-  restaurace.push(mistoSearch);
-  filteredRestaurace = restaurace.filter(r => r.includes(mistoSearch));
-  chooseRestaurace(mistoSearch);
-}
-let mistoInput: HTMLInputElement;
-let mistoSearch: string = "";
+  let restaurace: Restaurant[] = [];
+  let filteredRestaurace = restaurace;
+  export let chosenRestaurace: null | Restaurant = null;
+  const chooseRestaurace = (res: Restaurant) => {
+    chosenRestaurace = res;
+  }
+  const addRestaurant = () => {
+    restaurace.push({name: mistoSearch} as Restaurant);
+    filteredRestaurace = restaurace.filter(r => r.name.includes(mistoSearch));
+    chooseRestaurace({name: mistoSearch} as Restaurant);
+  }
+  let mistoInput: HTMLInputElement;
+  let mistoSearch: string = "";
 
-$: filteredRestaurace = restaurace.filter(r => r.includes(mistoSearch));
+  $: filteredRestaurace = restaurace.filter(r => r.name.includes(mistoSearch));
 
-$: if (mistoOpen) {
-  mistoInput?.focus();
-}
+  $: if (mistoOpen) {
+    mistoInput?.focus();
+  }
+
+  onMount(() => {
+    restaurace = getRestaurants();
+  })
 </script>
 
 <!-- Misto -->
@@ -38,7 +45,7 @@ $: if (mistoOpen) {
         <input type="text" placeholder="Název..." bind:value={mistoSearch} bind:this={mistoInput} class="flex-grow">
       {:else}
         {#if chosenRestaurace}
-          <div class="flex-grow">{chosenRestaurace}</div>
+          <div class="flex-grow">{chosenRestaurace.name}</div>
         {:else}
           <div class="flex-grow text-gray-300">Vyberte místo</div>
         {/if}
@@ -49,7 +56,7 @@ $: if (mistoOpen) {
       <!-- {#if filteredRestaurace.length > 0} -->
         {#each filteredRestaurace as restAuRace}
           <div class="restaurace" on:click={() => chooseRestaurace(restAuRace)}>
-            {restAuRace}
+            {restAuRace.name}
           </div>
         {/each}
       <!-- {:else}
