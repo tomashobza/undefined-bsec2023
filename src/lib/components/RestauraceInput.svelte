@@ -51,6 +51,7 @@
     console.log(lat, long)
 
     chosenRestaurace = findNearestRestaurant(lat, long)
+    dispatch('choose', chosenRestaurace);
   }
 
   function handleSelectWithLocation() {
