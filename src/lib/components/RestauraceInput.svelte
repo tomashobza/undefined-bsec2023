@@ -54,7 +54,7 @@
         {#if chosenRestaurace}
           <div class="flex-grow">{chosenRestaurace.name}</div>
         {:else}
-          <div class="flex-grow text-gray-300">Vyberte místo</div>
+          <div class="flex-grow text-black/40">Vyberte místo</div>
         {/if}
       {/if}
       <div class="w-4 transition-all duration-400" class:rotate-180={mistoOpen} on:click={() => mistoOpen = !mistoOpen}><Chevron /></div>

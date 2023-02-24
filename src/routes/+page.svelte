@@ -17,6 +17,7 @@
 	let drawerOpen = false;
 	let maloDat = false;
 	let saved = false;
+	let glykogenInput;
 
 	let doporucenaDavka: null | number = null;
 
@@ -94,8 +95,8 @@
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
 		<div class="mb-1 font-bold">Současná hladina glukózy</div>
-		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
-			<input type="number" class="flex-grow" bind:value={init}>
+		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold" on:click={glykogenInput.focus()}>
+			<input type="number" class="flex-grow" bind:value={init} bind:this={glykogenInput}>
 			<div class="text-gray-400">mmol/L</div>
 				</div>
 	</div>
