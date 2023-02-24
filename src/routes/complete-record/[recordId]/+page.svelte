@@ -24,6 +24,10 @@
     mealType = getMealTypeById(record?.mealTypeId)
     restaurant = getRestaurantById(mealType?.restaurantId)
 
+    if (record.result) {
+      resultValue = record.result;
+    }
+
     console.log(record)
     console.log(mealType)
     console.log(restaurant)
