@@ -80,7 +80,7 @@
 		maloDat = false;
 	}
 
-	$: if (chosenRestaurace && chosenJidlo && init && !doporucenaDavka) {
+	$: if (chosenRestaurace && chosenJidlo && init && doporucenaDavka === null) {
 		console.log('1')
 		saved = false;
 		const { a, b, avgJVB } = calculateBolus(chosenJidlo.id);
@@ -97,10 +97,12 @@
 			}
 		}
 	}
+
+	$: console.log(chosenJidlo)
 </script>
 
 <div class="flex-grow flex flex-col items-stretch relative">
-	<RestauraceInput on:choose={(e) => chosenRestaurace = e.detail} />
+	<RestauraceInput on:choose={(e) => {chosenRestaurace = e.detail; console.log('sad')}} />
 
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
@@ -120,7 +122,7 @@
 	{/if}
 	<div class="flex-grow flex flex-col items-center justify-center">
 		{#if doporucenaDavka !== null}
-			<input type="number" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
+			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
 		{:else}
 			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" disabled value={'--'}>
 		{/if}

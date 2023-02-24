@@ -14,6 +14,8 @@
 
   export let chosenRestaurace: null | Restaurant;
 
+  let chosenRestauraceOld = null;
+
   let mounted = false;
   onMount(() => mounted = true);
 
@@ -34,11 +36,18 @@
 
       return (f1.a+f1.b) - (f2.a+f2.b);
     });
+    
+  };
+
+  $: if ((chosenRestauraceOld === null && chosenRestaurace) || (chosenRestaurace && chosenRestaurace !== chosenRestauraceOld)) {
+    chosenRestauraceOld = chosenRestaurace;
     chosenJidlo = null;
     jidloSearch = "";
-  };
+  }
+
 	let chosenJidlo: null | MealType = null;
-	const chooseJidlo = (meal: MealType) => {
+	const chooseJidlo = (meal: MealType) => { 
+    console.log('r')
 		chosenJidlo = meal;
     dispatch('choose', chosenJidlo);
 	}
