@@ -53,13 +53,14 @@ export function getMealTypeById(id: string): MealType | null{
   return getStorage().data.mealTypes.find(r => r.id === id) || null;
 }
 
-export function saveMealRecord(mealTypeId: string, init: number, dose: number, datetime: dayjs.Dayjs): MealRecord {
+export function saveMealRecord(mealTypeId: string, init: number, dose: number, datetime: dayjs.Dayjs, result?: number): MealRecord {
   const data: MealRecord = {
     id: getRandomId(),
     dose,
     mealTypeId,
     init,
-    dateTime: datetime.unix()
+    dateTime: datetime.unix(),
+    result
   }
 
   getStorage().appendMealRecord(data);
@@ -69,6 +70,10 @@ export function saveMealRecord(mealTypeId: string, init: number, dose: number, d
 
 export function getMealRecords(): MealRecord[] {
   return getStorage().data.records;
+}
+
+export function getSortedMealRecordsByDate(): MealRecord[]{
+  return getMealRecords().sort(r => r.dateTime)
 }
 
 export function getMealRecordById(id: string): MealRecord | null{

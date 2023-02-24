@@ -48,7 +48,7 @@ export function laodTestData() {
     date = date.set("hours", parseInt(hours_minutes[0]))
     date = date.set("minutes", parseInt(hours_minutes[1]))
 
-    saveMealRecord(mealTypeId, r.Initial, r.Bolus, date);
+    saveMealRecord(mealTypeId, r.Initial, r.Bolus, date, r.Result);
   })
 }
 
