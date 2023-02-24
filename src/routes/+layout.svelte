@@ -10,7 +10,7 @@
 </script>
 
 <svelte:head>
-	<title></title>
+	<title>undefined</title>
 	<meta name="description" content="" />
 </svelte:head>
 
