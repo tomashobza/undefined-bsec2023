@@ -100,10 +100,10 @@
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
 		<div class="mb-1 font-bold">Současná hladina glukózy</div>
-		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold" on:click={glykogenInput.focus()}>
-			<input type="number" class="flex-grow" bind:value={init} bind:this={glykogenInput}>
+		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3" on:click={glykogenInput.focus()}>
+			<input type="number" min='0' class="flex-grow" bind:value={init} bind:this={glykogenInput}>
 			<div class="text-gray-400">mmol/L</div>
-				</div>
+		</div>
 	</div>
 	{#if maloDat}
 		<div transition:slide class="bg-red-100 self-center p-2 rounded-md flex flex-row items-center gap-2">
@@ -127,28 +127,28 @@
 			<button class="self-end w-5 cursor-pointer" on:click={() => drawerOpen=false}><X /></button>
 			<div class="flex-grow overflow-y-auto flex flex-col items-stretch">
 				{#each groups || [] as group}
-					<div class="text-gray-400">{group.dateString}</div>
+					<div class="font-bold">{group.dateString}</div>
 					{#each group.records || [] as rec}
 						<div class="border rounded-lg flex flex-col items-stretch my-1 py-2 px-3 mb-6">
 							<div class="flex flex-row items-center">
 								<div class="flex-grow">Glukóza před:</div>
 								<div>
-									<span class="font-semibold">{rec.init}</span>
-									<span class="text-slate-400">mmol/L</span>
+									<span>{rec.init}</span>
+									<span class="text-gray-500">mmol/L</span>
 								</div>
 							</div>
 							<div class="flex flex-row items-center">
 								<div class="flex-grow">Glukóza 2 hod. po:</div>
 								<div>
-									<span class="font-semibold">{rec.result}</span>
-									<span class="text-slate-400">mmol/L</span>
+									<span>{rec.result}</span>
+									<span class="text-gray-500">mmol/L</span>
 								</div>
 							</div>
 							<div class="flex flex-row items-center">
 								<div class="flex-grow">Bolus:</div>
 								<div>
-									<span class="font-semibold">{rec.dose}</span>
-									<span class="text-slate-400">jednotek</span>
+									<span>{rec.dose}</span>
+									<span class="text-gray-500">jednotek</span>
 								</div>
 							</div>
 						</div>
