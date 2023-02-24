@@ -2,7 +2,7 @@
   import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
-  import { calculateBolus, getMealTypes } from '$ts/functions';
+  import { calculateBolus, getMealTypes, saveMealType } from '$ts/functions';
   import type { MealType, Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
   import { onMount } from 'svelte';
@@ -40,12 +40,12 @@
 	}
 
 	const addJidlo = () => {
-		jidla.push({name: jidloSearch} as MealType);
+    const new_meal = saveMealType(chosenRestaurace.id, jidloSearch);
 		filteredJidla = getMealTypes(jidloSearch);
     filteredJidla = filteredJidla.sort((a, b) => {
       return calculateBolus(a.id).avgJVB - calculateBolus(b.id).avgJVB
     });
-		chooseJidlo({name: jidloSearch} as MealType);
+		chooseJidlo(new_meal);
 	}
 
 	$: if (mounted && jidloSearch) {

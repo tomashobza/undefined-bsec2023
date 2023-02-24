@@ -2,7 +2,7 @@
    import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
-  import { getRestaurants } from '$ts/functions';
+  import { getRestaurants, saveRestaurant } from '$ts/functions';
   import type { Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
   import { onMount } from 'svelte';
@@ -23,9 +23,11 @@
     dispatch('choose', chosenRestaurace);
   }
   const addRestaurant = () => {
-    restaurace.push({name: mistoSearch} as Restaurant);
-    filteredRestaurace = restaurace.filter(r => r.name.includes(mistoSearch));
-    chooseRestaurace({name: mistoSearch} as Restaurant);
+    navigator.geolocation.getCurrentPosition((v) => {
+      const new_rest = saveRestaurant(mistoSearch, v.coords.latitude, v.coords.longitude);
+      filteredRestaurace = restaurace.filter(r => r.name.includes(mistoSearch));
+      chooseRestaurace(new_rest);
+    })
   }
   let mistoInput: HTMLInputElement;
   let mistoSearch: string = "";
