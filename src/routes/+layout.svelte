@@ -24,7 +24,7 @@
 			<div class="w-1/3 bg-white rounded-lg h-1 justify-end mt-[0.33rem]"></div>
 		</div>
 
-		<div class="p-4 h-full overflow-y-auto flex-grow">
+		<div class="p-4 overflow-y-auto flex-grow flex flex-col items-stretch">
 			<slot />
 		</div>
 
@@ -35,9 +35,10 @@
 	.mobile {
 		@apply bg-white;
 		@apply w-full sm:max-w-[28rem] h-full;
-		@apply rounded-xl;
+		@apply sm:rounded-xl;
 		@apply overflow-hidden;
 		@apply shadow-lg;
 		@apply transition-all;
+		@apply flex flex-col items-stretch;
 	}
 </style>

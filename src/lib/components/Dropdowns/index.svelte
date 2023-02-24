@@ -7,6 +7,8 @@
     export let doNotCloseOnClickOutside = false;
     export let dropdownTakesPlace = false;
 
+    export let disabled = false;
+
     let buttonHeight = 0;
     let buttonWidth = 0;
 </script>
@@ -18,7 +20,7 @@
     bind:offsetWidth={buttonWidth}
     use:clickOutside 
     on:click_outside={() => {if (!doNotCloseOnClickOutside) isDropdownOpen = false}}
-    on:click={() => isDropdownOpen = !isDropdownOpen}
+    on:click={() => (!disabled) && (isDropdownOpen = !isDropdownOpen)}
 >
     <div>
         <slot name='button' />
