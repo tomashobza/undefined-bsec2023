@@ -7,15 +7,20 @@
   import { restaurants } from "$ts/restaurants";
   import { onMount } from 'svelte';
 
+  import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 
   // RESTAURACE
 	let mistoOpen = false;
 
   let restaurace: Restaurant[] = [];
   let filteredRestaurace = restaurace;
-  export let chosenRestaurace: null | Restaurant = null;
+  let chosenRestaurace: null | Restaurant = null;
   const chooseRestaurace = (res: Restaurant) => {
     chosenRestaurace = res;
+    dispatch('choose', chosenRestaurace);
   }
   const addRestaurant = () => {
     restaurace.push({name: mistoSearch} as Restaurant);
