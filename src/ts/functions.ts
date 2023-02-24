@@ -75,8 +75,30 @@ export function getMealRecords(): MealRecord[] {
   return getStorage().data.records;
 }
 
-export function getSortedMealRecordsByDate(): MealRecord[]{
-  return getMealRecords().sort(r => r.dateTime)
+export function getSortedMealRecordsByDate(): MealRecord[] {
+  return getMealRecords().sort(r => -r.dateTime)
+}
+
+export function getFilteredMealRecords(restaurantId?: string, mealTypeId?: string): MealRecord[] {
+  const records = getSortedMealRecordsByDate();
+
+  if (!restaurantId) {
+    return records;
+  }
+
+  const filteredByRestaurant = records.filter(r => {
+    const mealType = getMealTypeById(r.mealTypeId);
+
+    return mealType?.restaurantId === restaurantId;
+  })
+
+  if (!mealTypeId) {
+    return filteredByRestaurant;
+  }
+
+  const filteredByMealType = filteredByRestaurant.filter(r => r.mealTypeId === mealTypeId);
+
+  return filteredByMealType;
 }
 
 export function getMealRecordById(id: string): MealRecord | null{
