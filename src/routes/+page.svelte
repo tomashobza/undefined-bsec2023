@@ -9,7 +9,6 @@
   import { fly, scale, slide } from 'svelte/transition';
 	import dayjs from 'dayjs';
 	import Toastify from 'toastify-js'
-    import { goto } from '$app/navigation';
 
 	let chosenRestaurace: null | Restaurant;
 	let chosenJidlo: null | MealType;
@@ -37,8 +36,6 @@
 			}).showToast();
 
 			saved = true;
-
-			goto("/stats")
 		}
 	}
 
@@ -80,10 +77,8 @@
 		saved = false;
 		const { a, b, avgJVB } = calculateBolus(chosenJidlo.id);
 		if (a == b && b == avgJVB && avgJVB == 0) {
-				maloDat = true;
-				doporucenaDavka = 8;
+			// TODO: nejde vypocitat, vymyslet
 		} else {
-			console.log(a, b);
 			if (a != 0 && b != 0) {
 				doporucenaDavka = Math.max(Math.floor(b*(6-init)+a), 0);
 				maloDat = false;
