@@ -80,7 +80,7 @@
 		maloDat = false;
 	}
 
-	$: if (chosenRestaurace && chosenJidlo && init && !doporucenaDavka) {
+	$: if (chosenRestaurace && chosenJidlo && init && doporucenaDavka === null) {
 		console.log('1')
 		saved = false;
 		const { a, b, avgJVB } = calculateBolus(chosenJidlo.id);
@@ -97,10 +97,12 @@
 			}
 		}
 	}
+
+	$: console.log(chosenJidlo)
 </script>
 
 <div class="flex-grow flex flex-col items-stretch relative">
-	<RestauraceInput on:choose={(e) => chosenRestaurace = e.detail} />
+	<RestauraceInput on:choose={(e) => {chosenRestaurace = e.detail; console.log('sad')}} />
 
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
