@@ -122,7 +122,7 @@
 	{/if}
 	<div class="flex-grow flex flex-col items-center justify-center">
 		{#if doporucenaDavka !== null}
-			<input type="number" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
+			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
 		{:else}
 			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" disabled value={'--'}>
 		{/if}
