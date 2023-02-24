@@ -65,6 +65,9 @@ export function saveMealRecord(mealTypeId: string, init: number, dose: number, d
 
   getStorage().appendMealRecord(data);
 
+  // Default delay is 2 hours
+  planNotificationForMeal(data.id, 5)
+
   return data;
 }
 
