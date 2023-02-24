@@ -2,7 +2,7 @@
   import Dropdown from '$lib/components/Dropdowns/index.svelte'
   import Chevron from '$lib/icons/Chevron.svelte';
   import Plus from '$lib/icons/Plus.svelte';
-  import { getMealTypes } from '$ts/functions';
+  import { calculateBolus, getMealTypes } from '$ts/functions';
   import type { MealType, Restaurant } from '$ts/interfaces';
   import { restaurants } from "$ts/restaurants";
   import { onMount } from 'svelte';
@@ -25,9 +25,11 @@
 	let jidla: MealType[] = [];
   let filteredJidla = jidla;
 	$: if (chosenRestaurace && mounted && !jidloSearch) {
-    console.log(getMealTypes());
     jidla = getMealTypes().filter(v => v.restaurantId == chosenRestaurace?.id);
     filteredJidla = jidla;
+    filteredJidla = filteredJidla.sort((a, b) => {
+      return calculateBolus(a.id).avgJVB - calculateBolus(b.id).avgJVB
+    });
     chosenJidlo = null;
     jidloSearch = "";
   };
@@ -40,12 +42,17 @@
 	const addJidlo = () => {
 		jidla.push({name: jidloSearch} as MealType);
 		filteredJidla = getMealTypes(jidloSearch);
+    filteredJidla = filteredJidla.sort((a, b) => {
+      return calculateBolus(a.id).avgJVB - calculateBolus(b.id).avgJVB
+    });
 		chooseJidlo({name: jidloSearch} as MealType);
 	}
 
 	$: if (mounted && jidloSearch) {
     filteredJidla = jidla.filter(v => v.name.includes(jidloSearch));
-    console.log(jidloSearch);
+    filteredJidla = filteredJidla.sort((a, b) => {
+      return calculateBolus(a.id).avgJVB - calculateBolus(b.id).avgJVB
+    });
   };
 
 	$: if (jidloOpen) {
@@ -64,7 +71,7 @@
         {#if chosenJidlo}
           <div class="flex-grow">{chosenJidlo.name}</div>
         {:else}
-          <div class="flex-grow text-gray-300">Vyberte místo</div>
+          <div class="flex-grow text-gray-300">Vyberte jídlo</div>
         {/if}
       {/if}
       <div class="w-4 transition-all duration-400" class:rotate-180={jidloOpen} on:click={() => jidloOpen = !jidloOpen}><Chevron /></div>
@@ -72,8 +79,9 @@
     <div slot="dropdown" class="bordered-thing mt-2 flex flex-col max-h-[20rem] overflow-y-auto">
       {#if filteredJidla.length > 0}
         {#each filteredJidla as jidlo}
-          <div class="restaurace" on:click={() => chooseJidlo(jidlo)}>
-            {jidlo.name}
+          <div class="restaurace flex flex-row items-center" on:click={() => chooseJidlo(jidlo)}>
+            <div class="flex-grow">{jidlo.name}</div>
+            <div class="text-gray-400 font-semibold">{Math.round(calculateBolus(jidlo.id).avgJVB)} j</div>
           </div>
         {/each}
       {:else}

@@ -3,6 +3,7 @@
 	import Graph from '$icons/Graph.svelte';
 	import Home from '$icons/Home.svelte';
 	import '../app.css';
+	import "toastify-js/src/toastify.css"
 	// import '$ts/firebase';
 	// import '$ts/auth'
 	// import '$ts/data';

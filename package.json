@@ -10,6 +10,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "1.7.2",
+		"@types/toastify-js": "^1.11.1",
 		"autoprefixer": "^10.4.13",
 		"postcss": "^8.4.21",
 		"svelte": "^3.55.1",
@@ -26,6 +27,7 @@
 		"firebase": "^9.17.1",
 		"linear-solve": "^1.2.1",
 		"lodash": "^4.17.21",
-		"lodash-es": "^4.17.21"
+		"lodash-es": "^4.17.21",
+		"toastify-js": "^1.12.0"
 	}
 }
