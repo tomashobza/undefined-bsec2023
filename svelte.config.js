@@ -8,7 +8,8 @@ const config = {
 		alias: {
       '$ts': 'src/ts/',
 			'$utils': 'src/utils/',
-			'$components': 'src/lib/components/'
+			'$components': 'src/lib/components/',
+			'$icons':'src/lib/icons'
     },
 		adapter: adapter()
 	},
