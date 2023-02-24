@@ -25,6 +25,10 @@
         }
       }
 
+      groups.forEach(g => {
+        g.records.sort((a, b) => b.dateTime - a.dateTime)
+      })
+
       groups = groups
     })
 </script>
