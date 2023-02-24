@@ -31,7 +31,7 @@
 	<RestauraceInput on:choose={(e) => chosenRestaurace = e.detail} />
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
-		<div class="text-gray-400 mb-1">Současná hladina glukózy</div>
+		<div class="mb-1 font-bold">Současná hladina glukózy</div>
 		<div class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
 			<input type="number" class="flex-grow" bind:value={init}>
 			<div class="text-gray-400">mmol/L</div>
@@ -63,5 +63,17 @@
 		@apply rounded-full;
 		@apply border;
 		@apply w-[8rem]
+	}
+
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type=number] {
+		-moz-appearance: textfield;
 	}
 </style>

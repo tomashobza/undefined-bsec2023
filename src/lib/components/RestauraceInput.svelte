@@ -43,9 +43,9 @@
 
 <!-- Misto -->
 <div class="w-full my-4">
-  <div class="text-gray-400 mb-1">Místo</div>
+  <div class="mb-1  font-semibold">Místo</div>
   <Dropdown bind:isDropdownOpen={mistoOpen}>
-    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
+    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3">
       {#if mistoOpen}
         <input type="text" placeholder="Název..." bind:value={mistoSearch} bind:this={mistoInput} class="flex-grow">
       {:else}

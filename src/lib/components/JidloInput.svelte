@@ -55,9 +55,9 @@
 
 <!-- Jidlo -->
 <div class="w-full my-4">
-  <div class="text-gray-400 mb-1">Jídlo</div>
+  <div class="font-bold mb-1">Jídlo</div>
   <Dropdown bind:isDropdownOpen={jidloOpen} disabled={!chosenRestaurace}>
-    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
+    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3">
       {#if jidloOpen}
         <input type="text" placeholder="Název..." bind:value={jidloSearch} bind:this={jidloInput} class="flex-grow">
       {:else}
