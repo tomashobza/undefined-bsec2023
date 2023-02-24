@@ -77,7 +77,8 @@
 		saved = false;
 		const { a, b, avgJVB } = calculateBolus(chosenJidlo.id);
 		if (a == b && b == avgJVB && avgJVB == 0) {
-			// TODO: nejde vypocitat, vymyslet
+				maloDat = true;
+				doporucenaDavka = 8;
 		} else {
 			if (a != 0 && b != 0) {
 				doporucenaDavka = Math.max(Math.floor(b*(6-init)+a), 0);
