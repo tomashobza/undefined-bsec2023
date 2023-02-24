@@ -104,6 +104,7 @@ export function getMealRecordsOfType(typeId: string): MealRecord[] {
 
 export function calculateBolus(mealTypeId: string): {a: number, b: number, avgJVB: number} {
   const records = getMealRecordsOfType(mealTypeId);
+  console.log(records);
 
   // least square calculations
   const x: number[] = [];
@@ -124,18 +125,12 @@ export function calculateBolus(mealTypeId: string): {a: number, b: number, avgJV
     jvbs.push(foodRecord.dose + (foodRecord.result - foodRecord.init));
   });
 
-
-  records.forEach((foodRecord: MealRecord) => {
-    if (!foodRecord.result) {
-      return
-    }
-
-    x.push(foodRecord.result - foodRecord.init);
-    x2.push((foodRecord.result - foodRecord.init) * (foodRecord.result - foodRecord.init));
-    y.push(foodRecord.dose);
-    xy.push((foodRecord.result - foodRecord.init) * foodRecord.dose);
-    jvbs.push(foodRecord.dose + (foodRecord.result - foodRecord.init));
-  });
+  if (x?.length <= 0 || y?.length <= 0 || xy?.length <= 0) {
+    return {
+      a: 0, 
+      b: 0, 
+      avgJVB: 0}
+  }
 
   const sumXY = xy.reduce((a, v) => a+v);
   const sumX = x.reduce((a, v) => a+v);

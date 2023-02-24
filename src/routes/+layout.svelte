@@ -24,7 +24,7 @@
 			<div class="w-1/3 bg-white rounded-lg h-1 justify-end mt-[0.33rem]"></div>
 		</div>
 
-		<div class="p-4 overflow-y-auto flex-grow flex flex-col items-stretch">
+		<div class="p-4 pb-0 overflow-y-auto flex-grow flex flex-col items-stretch">
 			<slot />
 		</div>
 
