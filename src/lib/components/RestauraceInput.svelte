@@ -45,7 +45,7 @@
 <div class="w-full my-4">
   <div class="text-gray-400 mb-1">Místo</div>
   <Dropdown bind:isDropdownOpen={mistoOpen}>
-    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-2 px-3">
+    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
       {#if mistoOpen}
         <input type="text" placeholder="Název..." bind:value={mistoSearch} bind:this={mistoInput} class="flex-grow">
       {:else}
@@ -58,18 +58,18 @@
       <div class="w-4 transition-all duration-400" class:rotate-180={mistoOpen} on:click={() => mistoOpen = !mistoOpen}><Chevron /></div>
     </div>
     <div slot="dropdown" class="bordered-thing mt-2 flex flex-col max-h-[20rem] overflow-y-auto">
-      <!-- {#if filteredRestaurace.length > 0} -->
+      {#if filteredRestaurace.length > 0}
         {#each filteredRestaurace as restAuRace}
           <div class="restaurace" on:click={() => chooseRestaurace(restAuRace)}>
             {restAuRace.name}
           </div>
         {/each}
-      <!-- {:else}
+      {:else}
         <div class="cursor-pointer flex flex-row items-center gap-2 px-2 py-3 bg-blue-200" on:click={addRestaurant}>
           <div class="w-5"><Plus/></div>
           <div>Přidat restauraci</div>
         </div>
-      {/if} -->
+      {/if}
     </div>
   </Dropdown>
 </div>

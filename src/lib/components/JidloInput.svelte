@@ -25,7 +25,8 @@
 	let jidla: MealType[] = [];
   let filteredJidla = jidla;
 	$: if (chosenRestaurace && mounted && !jidloSearch) {
-    jidla = getMealTypes();
+    console.log(getMealTypes());
+    jidla = getMealTypes().filter(v => v.restaurantId == chosenRestaurace?.id);
     filteredJidla = jidla;
     chosenJidlo = null;
     jidloSearch = "";
@@ -55,8 +56,8 @@
 <!-- Jidlo -->
 <div class="w-full my-4">
   <div class="text-gray-400 mb-1">Jídlo</div>
-  <Dropdown bind:isDropdownOpen={jidloOpen}>
-    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-2 px-3">
+  <Dropdown bind:isDropdownOpen={jidloOpen} disabled={!chosenRestaurace}>
+    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3 font-semibold">
       {#if jidloOpen}
         <input type="text" placeholder="Název..." bind:value={jidloSearch} bind:this={jidloInput} class="flex-grow">
       {:else}
