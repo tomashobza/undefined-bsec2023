@@ -51,18 +51,21 @@
   $: console.log(chosenRestaurace)
 </script>
 
-<div class="flex flex-col items-stretch relative">
-	<RestauraceInput on:choose={handleChooseRestaurant} />
-	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={handleChooseMeal} />
-</div>
-<div class="mb-2">
-  {#each groups as group}
-  <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
-  
-  <div class="border rounded-xl">
-    {#each group.records as record (record.id)}
-    <RecordCard {record} />
-    {/each}
+<div class="pb-3">
+  <div class="flex flex-col items-stretch relative">
+    <RestauraceInput on:choose={handleChooseRestaurant} />
+    <JidloInput chosenRestaurace={chosenRestaurace} on:choose={handleChooseMeal} />
   </div>
+  
+  {#each groups as group}
+    <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
+  
+    <div class="border rounded-xl overflow-hidden">
+        <div>
+          {#each group.records as record (record.id)}
+            <RecordCard {record} />
+          {/each}
+        </div>
+    </div>
   {/each}
 </div>

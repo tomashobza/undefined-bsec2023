@@ -28,12 +28,16 @@
     })
 </script>
 
-{#each groups as group}
-  <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
+<div class="pb-3">
+  {#each groups as group}
+    <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
   
-  <div class="border rounded-xl">
-    {#each group.records as record}
-      <RecordCard {record} />
-    {/each}
-  </div>
-{/each}
+    <div class="">
+        <div class="overflow-hidden rounded-xl border">
+          {#each group.records as record}
+            <RecordCard {record} />
+          {/each}
+        </div>
+    </div>
+  {/each}
+</div>
