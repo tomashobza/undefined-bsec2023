@@ -17,8 +17,12 @@
 
 <div class="sm:p-4 transition-all bg-slate-100 w-full h-full flex flex-col items-center justify-center text-sm">
 	<div class="mobile">
-		<div class="w-full grid grid-cols-3 place-items-center p-2 bg-[#35B9F1]">
-			<button class="w-6"><Home></Home></button>
+		<div class="w-full grid grid-cols-3 place-items-center p-2 bg-[#35B9F1] h-10">
+			<div class="h-full">
+				<button class="w-6">
+					<Home></Home>
+				</button>
+			</div>
 			<button class="w-5"><Food></Food></button>
 			<button class="w-6"><Graph></Graph></button>
 			<!-- TODO: tady tome -->
