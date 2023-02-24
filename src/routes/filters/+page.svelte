@@ -55,13 +55,14 @@
 	<RestauraceInput on:choose={handleChooseRestaurant} />
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={handleChooseMeal} />
 </div>
-
-{#each groups as group}
+<div class="mb-2">
+  {#each groups as group}
   <div class="py-2 px-2 mt-4 font-semibold">{group.dateString}</div>
-
+  
   <div class="border rounded-xl">
     {#each group.records as record (record.id)}
-      <RecordCard {record} />
+    <RecordCard {record} />
     {/each}
   </div>
-{/each}
+  {/each}
+</div>
