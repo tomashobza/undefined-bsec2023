@@ -17,7 +17,7 @@
 <div class="sm:p-4 transition-all bg-slate-100 w-full h-full flex flex-col items-center justify-center text-sm">
 	<div class="mobile">
 
-		<div class="p-4 pb-0 overflow-y-auto flex-grow flex flex-col items-stretch">
+		<div class="px-4 pb-0 overflow-y-auto flex-grow flex flex-col items-stretch">
 			<slot />
 		</div>
 
