@@ -92,6 +92,7 @@
 
 <div class="flex-grow flex flex-col items-stretch relative">
 	<RestauraceInput on:choose={(e) => chosenRestaurace = e.detail} />
+
 	<JidloInput chosenRestaurace={chosenRestaurace} on:choose={(e) => chosenJidlo = e.detail} />
 	<div class="w-full my-4">
 		<div class="mb-1 font-bold">Současná hladina glukózy</div>

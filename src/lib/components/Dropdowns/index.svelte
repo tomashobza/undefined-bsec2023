@@ -16,6 +16,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div 
     class='relative w-full'
+    class:opacity-50={disabled}
     bind:offsetHeight={buttonHeight}
     bind:offsetWidth={buttonWidth}
     use:clickOutside 
