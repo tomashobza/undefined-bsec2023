@@ -25,6 +25,7 @@
 	let jidla: MealType[] = [];
   let filteredJidla = jidla;
 	$: if (chosenRestaurace && mounted && !jidloSearch) {
+    console.log('asdd')
     jidla = getMealTypes().filter(v => v.restaurantId == chosenRestaurace?.id);
     filteredJidla = jidla;
     filteredJidla = filteredJidla.sort((a, b) => {
@@ -43,6 +44,7 @@
 	}
 
 	const addJidlo = () => {
+    console.log('o')
     const new_meal = saveMealType(chosenRestaurace.id, jidloSearch);
 		filteredJidla = getMealTypes(jidloSearch);
     filteredJidla = filteredJidla.sort((a, b) => {
@@ -55,6 +57,7 @@
 	}
 
 	$: if (mounted && jidloSearch) {
+    console.log('bam')
     filteredJidla = jidla.filter(v => v.name.includes(jidloSearch));
     filteredJidla = filteredJidla.sort((a, b) => {
       const f1 = calculateBolus(a.id);
@@ -64,16 +67,13 @@
     });
   };
 
-	$: if (jidloOpen) {
-		jidloInput?.focus();
-	}
 </script>
 
 <!-- Jidlo -->
 <div class="w-full my-4">
   <div class="font-bold mb-1">Jídlo</div>
   <Dropdown bind:isDropdownOpen={jidloOpen} disabled={!chosenRestaurace}>
-    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3">
+    <div slot="button" class="cursor-pointer w-full bordered-thing flex flex-row items-center gap-2 py-4 px-3" on:click={() => jidloInput?.focus()}>
       {#if jidloOpen}
         <input type="text" placeholder="Název..." bind:value={jidloSearch} bind:this={jidloInput} class="flex-grow">
       {:else}
@@ -88,7 +88,7 @@
     <div slot="dropdown" class="bordered-thing mt-2 flex flex-col max-h-[20rem] overflow-y-auto">
       {#if filteredJidla.length > 0}
         {#each filteredJidla as jidlo}
-          <div class="restaurace flex flex-row items-center" on:click={() => chooseJidlo(jidlo)}>
+          <div class="restaurace flex flex-row items-center" on:click={() => {chooseJidlo(jidlo); jidloInput?.blur()}}>
             <div class="flex-grow">{jidlo.name}</div>
             <div class="text-gray-400 font-semibold">{Math.round(calculateBolus(jidlo.id).a)} j</div>
           </div>
