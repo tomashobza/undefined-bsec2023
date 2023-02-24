@@ -78,7 +78,9 @@ export function getMealRecords(): MealRecord[] {
 }
 
 export function getSortedMealRecordsByDate(): MealRecord[] {
-  return getMealRecords().sort(r => -r.dateTime)
+  const newArr = getMealRecords()
+  newArr.sort((a, b) => b.dateTime - a.dateTime)
+  return newArr;
 }
 
 export function getFilteredMealRecords(restaurantId?: string, mealTypeId?: string): MealRecord[] {
