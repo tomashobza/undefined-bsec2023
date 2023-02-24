@@ -23,4 +23,4 @@ Object.keys(restaurants).forEach(restaurant => {
   });
 });
 
-console.log(restaurants);
+// console.log(restaurants);

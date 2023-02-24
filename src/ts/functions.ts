@@ -150,7 +150,7 @@ export function calculateBolus(mealTypeId: string): {a: number, b: number, avgJV
     jvbs.push(foodRecord.dose + (foodRecord.result - foodRecord.init));
   });
 
-  console.log(x, y);
+  // console.log(x, y);
 
   if (x?.length <= 0 || y?.length <= 0 || xy?.length <= 0) {
     return {

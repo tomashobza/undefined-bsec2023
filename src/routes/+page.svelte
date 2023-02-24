@@ -4,8 +4,8 @@
   import Plus from '$icons/Plus.svelte';
   import Warning from '$icons/Warning.svelte';
   import X from '$icons/X.svelte';
-  import { calculateBolus, saveMealRecord } from '$ts/functions';
-  import type { MealType, Restaurant } from '$ts/interfaces';
+  import { calculateBolus, getMealRecordsOfType, getSortedMealRecordsByDate, saveMealRecord } from '$ts/functions';
+  import type { MealRecord, MealType, Restaurant } from '$ts/interfaces';
   import { fly, scale, slide } from 'svelte/transition';
 	import dayjs from 'dayjs';
 	import Toastify from 'toastify-js'
@@ -35,6 +35,35 @@
 			}).showToast();
 
 			saved = true;
+		}
+	}
+
+	let groups: {dateString: string, records: MealRecord[]}[] = [];
+	let records;
+
+	const openDrawer = () => {
+		if (chosenRestaurace && chosenJidlo) {
+			records = getMealRecordsOfType(chosenJidlo.id);
+
+      for (const record of records) {
+        const datetime = dayjs(record.dateTime * 1000);
+        const dateString = datetime.format('DD. MM. YYYY')
+
+        const group = groups.find(g => g.dateString === dateString);
+
+        if (group) {
+          group.records.push(record);
+        } else {
+          groups.push({dateString, records: [record]})
+        }
+      }
+
+      groups = groups;
+			groups = groups.sort((a, b) => -1);
+
+			console.log(groups);
+
+			drawerOpen=true;
 		}
 	}
 
@@ -83,13 +112,43 @@
 		<div class="text-xl text-gray-400 font-thin">jednotek</div>
 	</div>
 	<div class="flex flex-row w-full justify-evenly mb-6 gap-2">
-		<button class="bottom-btn" on:click={() => drawerOpen=true}>Zobrazit data</button>
+		<button class="bottom-btn" on:click={openDrawer}>Zobrazit data</button>
 		<button class="bottom-btn" on:click={save}>Uložit</button>
 	</div>
 
 	{#if drawerOpen}
-		<div transition:fly={{y: 800, duration:500, opacity:1}} class="absolute w-full bg-white bottom-0 z-[99] rounded-t-xl shadow-xl border border-b-0 h-[90%] p-4 flex flex-col">
+		<div transition:fly={{y: 800, duration:500, opacity:1}} class="absolute w-full bg-white bottom-0 z-[99] rounded-t-xl shadow-xl border border-b-0 h-[90%] p-4 pb-0 flex flex-col">
 			<button class="self-end w-5 cursor-pointer" on:click={() => drawerOpen=false}><X /></button>
+			<div class="flex-grow overflow-y-auto flex flex-col items-stretch">
+				{#each groups || [] as group}
+					<div class="text-gray-400">{group.dateString}</div>
+					{#each group.records || [] as rec}
+						<div class="border rounded-lg flex flex-col items-stretch my-1 py-2 px-3 mb-6">
+							<div class="flex flex-row items-center">
+								<div class="flex-grow">Glukóza před:</div>
+								<div>
+									<span class="font-semibold">{rec.init}</span>
+									<span class="text-slate-400">mmol/L</span>
+								</div>
+							</div>
+							<div class="flex flex-row items-center">
+								<div class="flex-grow">Glukóza 2 hod. po:</div>
+								<div>
+									<span class="font-semibold">{rec.result}</span>
+									<span class="text-slate-400">mmol/L</span>
+								</div>
+							</div>
+							<div class="flex flex-row items-center">
+								<div class="flex-grow">Bolus:</div>
+								<div>
+									<span class="font-semibold">{rec.dose}</span>
+									<span class="text-slate-400">jednotek</span>
+								</div>
+							</div>
+						</div>
+					{/each}
+				{/each}
+			</div>
 		</div>
 	{/if}
 </div>
