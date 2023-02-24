@@ -28,8 +28,8 @@
 
 <div class="relative">
   <div class="w-full flex items-center justify-evenly bg-[#35B9F1] h-14" bind:offsetWidth={width}>
-    <button class="w-6" on:click={() => goto('/filters')}>
-      <div class="w-4">
+    <button class="min-w-[2rem] flex justify-center" on:click={() => goto('/filters')}>
+      <div class="w-5">
         {#if option === 0}
           <FoodSelected />
         {:else}
@@ -37,14 +37,14 @@
         {/if}
       </div>
     </button>
-    <button class="w-6 grid place-items-center" on:click={() => goto('/')}>
+    <button class="w-8 grid place-items-center" on:click={() => goto('/')}>
       {#if option === 1}
         <HomeSelected />
       {:else}
         <Home />
       {/if}
     </button>
-    <button class="w-6" on:click={() => goto('/stats')}>
+    <button class="w-8" on:click={() => goto('/stats')}>
         {#if option === 2}
           <GraphSelected />
         {:else}
