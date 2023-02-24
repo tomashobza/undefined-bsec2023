@@ -21,6 +21,10 @@ export function getRestaurants(): Restaurant[] {
   return getStorage().data.restaurants;
 }
 
+export function getRestaurantById(id: string): Restaurant | null {
+  return getStorage().data.restaurants.find(r => r.id === id) || null;
+}
+
 export function saveMealType(restaurantId: string, name: string): MealType {
   const data: MealType = {
     id: getRandomId(),
