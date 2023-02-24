@@ -52,6 +52,11 @@ export class Storage {
 
     this.save();
   }
+
+  clear() {
+    this.data = {restaurants: [], mealTypes: [], records: []}
+    this.save();
+  }
 }
 
 const storageInstance = writable<Storage | null>(null)

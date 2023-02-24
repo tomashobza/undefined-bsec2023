@@ -15,4 +15,5 @@ export interface MealRecord {
   init: number;
   dose: number;
   result?: number;
+  dateTime: number;
 }

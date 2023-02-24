@@ -6,6 +6,7 @@ specifiers:
   '@types/lodash-es': ^4.17.6
   autoprefixer: ^10.4.13
   chart.js: ^4.2.1
+  dayjs: ^1.11.7
   firebase: ^9.17.1
   linear-solve: ^1.2.1
   lodash: ^4.17.21
@@ -21,6 +22,7 @@ specifiers:
 dependencies:
   '@types/lodash-es': 4.17.6
   chart.js: 4.2.1
+  dayjs: 1.11.7
   firebase: 9.17.1
   linear-solve: 1.2.1
   lodash: 4.17.21
@@ -1066,6 +1068,10 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
     dev: true
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

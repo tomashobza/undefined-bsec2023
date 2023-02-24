@@ -1,12 +1,9 @@
 import type { MealRecord, MealType, Restaurant } from "./interfaces";
 import { getStorage } from "./storage";
-
-export interface Meal {
-  name: string
-}
+import type dayjs from "dayjs"
 
 function getRandomId(): string {
-  return (Math.random() * 10000000000000000).toString()
+  return (Math.random() * 100000000000000000).toString()
 }
 
 export function saveRestaurant(name: string): Restaurant {
@@ -46,12 +43,13 @@ export function getMealTypes(search?: string): MealType[] {
   return mealTypes.filter((i: MealType) => i.name === search);
 }
 
-export function saveMealRecord(mealTypeId: string, init: number, dose: number): MealRecord {
+export function saveMealRecord(mealTypeId: string, init: number, dose: number, datetime: dayjs.Dayjs): MealRecord {
   const data: MealRecord = {
     id: getRandomId(),
     dose,
     mealTypeId,
     init,
+    dateTime: datetime.unix()
   }
 
   getStorage().appendMealRecord(data);

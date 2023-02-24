@@ -1,19 +1,20 @@
 <script lang="ts">
-    import { getRestaurants, saveRestaurant } from "$ts/functions";
-    import { getStorage } from "$ts/storage";
+    import { laodTestData } from "$ts/testData";
     import { onMount } from "svelte";
 
   onMount(() => {
-    const storage = getStorage();
+    // const storage = getStorage();
 
-    console.log({storage})
+    // console.log({storage})
 
-    // const rest = saveRestaurant('poe poe');
+    // // const rest = saveRestaurant('poe poe');
 
-    // console.log(rest)
+    // // console.log(rest)
 
-    const rest = getRestaurants();
+    // const rest = getRestaurants();
 
-    console.log({rest})
+    // console.log({rest})
   })
 </script>
+
+<button on:click={laodTestData}>Load Test Data</button>
