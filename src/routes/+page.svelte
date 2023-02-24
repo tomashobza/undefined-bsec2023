@@ -124,7 +124,7 @@
 		{#if doporucenaDavka !== null}
 			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" bind:this={davkaInput} bind:value={doporucenaDavka} on:click={() => davkaInput.focus()}>
 		{:else}
-			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full" disabled value={'--'}>
+			<input type="text" class="text-[6rem] leading-[6rem] font-semibold text-black text-center max-w-full bg-transparent" disabled value={'--'}>
 		{/if}
 		<div class="text-xl text-gray-400 font-thin">jednotek</div>
 	</div>
