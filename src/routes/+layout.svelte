@@ -23,7 +23,7 @@
 					<Home></Home>
 				</button>
 			</div>
-			<button class="w-5"><Food></Food></button>
+			<button class="w-4"><Food></Food></button>
 			<button class="w-6"><Graph></Graph></button>
 			<!-- TODO: tady tome -->
 		</div>
